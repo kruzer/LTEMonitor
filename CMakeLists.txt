@@ -1,5 +1,6 @@
+
 cmake_minimum_required(VERSION 3.2)
-project(LTE_Monitor)
+project(LTEMonitor)
 
 
 set (lte_monitor_VERSION_MAJOR 0)
@@ -28,9 +29,9 @@ configure_file (
 
 add_library(LTEClasses ProgramOptions.cpp HuaweiClient.cpp AngularServer.cpp )
 target_link_libraries(LTEClasses INTERFACE simple-web-server ${Boost_LIBRARIES})
-add_executable(LTE_Monitor main.cpp)
+add_executable(LTEMonitor main.cpp)
 
-target_link_libraries(LTE_Monitor LTEClasses)
+target_link_libraries(LTEMonitor LTEClasses)
 
 enable_testing()
 add_subdirectory(tests)
