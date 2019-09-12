@@ -1,0 +1,8 @@
+[submodule "lmgui"]
+	path = lmgui
+	url = https://github.com/kruzer/lmgui
+	branch = master
+[submodule "Simple-Web-Server"]
+	path = Simple-Web-Server
+	url = https://gitlab.com/eidheim/Simple-Web-Server
+	branch = master

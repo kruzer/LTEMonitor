@@ -1,0 +1,2 @@
+#define lte_monitor_VERSION_MAJOR @lte_monitor_VERSION_MAJOR@
+#define lte_monitor_VERSION_MINOR @lte_monitor_VERSION_MINOR@

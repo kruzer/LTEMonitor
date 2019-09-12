@@ -1,0 +1,6 @@
+~*
+.git
+tags
+build/
+.vscode/
+*.swp
