@@ -33,7 +33,7 @@ make
 ```
 
 ## Download
-Standalone executables for Linux, macOS and Windows are provided in the Releases section. Download an archive for your operating system and unpack the content to a place accessible from command line.
+Standalone executables for Linux, macOS and Windows are provided in the Releases section https://github.com/kruzer/LTEMonitor/releases. Download an archive for your operating system and run the executable.
 
 ## Usage
 The LTEMonitor accepts command line parameters, however it can be configured via web interface. Simply start with router ip address and credentials:
@@ -43,7 +43,7 @@ LTEMonitor -s 192.168.8.1 -u admin -p admin
 and open your browser at http://localhost:8080 (the default local port is 8080, but it can be changed in command line)
 
 ### JSON API
-You can comunicate with the router using LTEMonitor as a authorised proxy:
+You can comunicate with the router using LTEMonitor as an authorised proxy, all API calls ('/api/...') are encapsulated in credentials and forwarded to it.
 ```sh
 user@host:~$ curl localhost:8080/api/monitoring/traffic-statistics
 {
