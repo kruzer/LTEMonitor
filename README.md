@@ -1,12 +1,8 @@
 # LTEMonitor
 ## Multiplatform LTE Router status monitor
-
-**LTEMonitor** collects data from your Huawei router or modem.
-Technically LTEMonitor is a self contained Web Server and Angular Client
-Backend uses https://gitlab.com/eidheim/Simple-Web-Server 
-Frontend is a simple Angular project available here https://github.com/kruzer/lmgui
-works on platforms:
-
+![Screeenshot1](img/scr1.png?raw=true "Screenshot 1")
+**LTEMonitor** presents data from your Huawei router or modem.
+Technically LTEMonitor is a self contained Web Server (uses https://gitlab.com/eidheim/Simple-Web-Server as a backend) and Angular Client (uses https://github.com/kruzer/lmgui as frontend) works on:
 * Linux
 * MacOS
 * Windows
@@ -61,6 +57,5 @@ user@host:~$ curl localhost:8080/api/monitoring/traffic-statistics
 }
 ```
 
-![Screeenshot1](img/scr1.png?raw=true "Screenshot 1")
 ![Screeenshot2](img/scr2.png?raw=true "Screenshot 2")
 
