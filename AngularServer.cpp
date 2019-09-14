@@ -48,12 +48,15 @@ void AngularServer::serveResources(std::shared_ptr<HttpServer::Response> res, st
 	if(url == "") url = "index.html";
 	if(url == "router") url = "index.html";
 	if(url == "console") url = "index.html";
+	if(url == "config") url = "index.html";
+	if(url == "signal") url = "index.html";
 	BOOST_LOG_TRIVIAL(info) << "url [" << url << "]";
 	auto found =  ResourcesMap.find(url);
 	if(found != ResourcesMap.end()){
 		if(endsWith(req->path, ".js")) out_header.emplace("Content-Type","application/javascript; charset=UTF-8");
 		if(endsWith(req->path, ".png")) out_header.emplace("Content-Type","image/png; charset=UTF-8");
 		if(endsWith(req->path, ".css")) out_header.emplace("Content-Type","text/css");
+		if(endsWith(url, ".html")) out_header.emplace("Content-Type","text/html");
 		BOOST_LOG_TRIVIAL(info) << "found:" << req->path;
 		std::string mystr(found->second.second, found->second.second + found->second.first);
 		res->write(SimpleWeb::StatusCode::success_ok,mystr,out_header);

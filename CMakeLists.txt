@@ -1,7 +1,5 @@
-
 cmake_minimum_required(VERSION 3.2)
 project(LTEMonitor)
-
 
 set (lte_monitor_VERSION_MAJOR 0)
 set (lte_monitor_VERSION_MINOR 13)
@@ -20,7 +18,13 @@ add_subdirectory(Simple-Web-Server)
 
 find_package(Boost COMPONENTS log program_options REQUIRED)
 include_directories( ${Boost_INCLUDE_DIRS} ${PROJECT_BINARY_DIR})
-
+if(APPLE)
+    set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
+		find_package(OpenSSL)
+		if(OPENSSL_FOUND)
+			include_directories( ${Boost_INCLUDE_DIRS} ${PROJECT_BINARY_DIR} ${OPENSSL_INCLUDE_DIR})
+		endif()
+endif()
 
 configure_file (
   "${PROJECT_SOURCE_DIR}/Version.h.in"
