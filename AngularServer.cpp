@@ -34,7 +34,7 @@ AngularServer::AngularServer(RouterClient &routerClient, const int port) : rc(ro
 			server.start();
 			});
 	std::this_thread::sleep_for(std::chrono::microseconds(100));
-
+	system("xdg-open http://localhost:8080");
 }
 
 void AngularServer::stop(){
