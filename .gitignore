@@ -5,4 +5,4 @@ build/
 .vscode/
 *.swp
 AngularResources.h
-
+.DS_Store
