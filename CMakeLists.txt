@@ -2,11 +2,11 @@ cmake_minimum_required(VERSION 3.2)
 project(LTEMonitor)
 
 set (lte_monitor_VERSION_MAJOR 0)
-set (lte_monitor_VERSION_MINOR 13)
+set (lte_monitor_VERSION_MINOR 14)
  
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Release)
 
 if(NOT MSVC)
     add_compile_options(-Wall -Wextra -Wsign-conversion)
@@ -39,8 +39,6 @@ target_link_libraries(LTEMonitor LTEClasses)
 
 enable_testing()
 add_subdirectory(tests)
-
-# Creates C resources file from files in given directory
 
 function(create_resources dir output)
 	# Create empty output file

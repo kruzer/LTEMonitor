@@ -37,8 +37,9 @@ struct F{
 };
 
 struct G{
+		int port=8080;
 		HuaweiClient hc {"fakehost","fakeuser","fakepasswd"};
-		AngularServer as {hc,8080};
+		AngularServer as {hc,port};
 		HttpClient client {"localhost:8080"};
 		ptree pt;
 		~G(){ as.stop(); }
@@ -55,8 +56,9 @@ BOOST_FIXTURE_TEST_CASE( serving_functions , F ){
 	r1 = client.request("GET", "/api/test");
 	read_json(r1->content, pt);
 	BOOST_CHECK_EQUAL(pt.get("fakeresponse",""),"ok");
-	auto it = r1->header.find("Access-Control-Allow-Origin");
-	BOOST_CHECK_MESSAGE( it != r1->header.end(), "Header should have Origin set");
+//	not required when self hosting
+//	auto it = r1->header.find("Access-Control-Allow-Origin");
+//	BOOST_CHECK_MESSAGE( it != r1->header.end(), "Header should have Origin set");
 }
 
 BOOST_FIXTURE_TEST_CASE( basic_init, G ) {
@@ -66,6 +68,15 @@ BOOST_FIXTURE_TEST_CASE( basic_init, G ) {
 	BOOST_CHECK_EQUAL(pt.get("config.user",""),"fakeuser");
 	BOOST_CHECK_EQUAL(pt.get("config.password",""),"fakepasswd");
 }
+
+/*
+BOOST_FIXTURE_TEST_CASE( afterstart_call, G ) {
+	auto oldport = port;
+	AngularServer as2(hc,port+1,[](){
+			int x=3;
+	});
+}
+*/
 
 BOOST_FIXTURE_TEST_CASE( serving_data, G ) {
 	auto r = client.request("GET", "/config");

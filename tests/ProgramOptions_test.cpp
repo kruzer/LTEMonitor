@@ -24,12 +24,13 @@ struct stream_redir {
 };
 
 BOOST_AUTO_TEST_CASE( assigments ) {
-	char const *argv[]={"LTEMonitor","-u", "adm", "-s","192.168.8.1","-p","pass","-o","4200"};
+	char const *argv[]={"LTEMonitor","-u", "adm", "-s","192.168.8.1","-p","pass","-o","4200","-b"};
 	ProgramOptions po(sizeof(argv)/sizeof(argv[0]),argv);
 	BOOST_CHECK_MESSAGE( po.user == "adm" , "user is:" << po.user);
 	BOOST_CHECK_MESSAGE( po.server == "192.168.8.1" , "server is:" << po.server);
 	BOOST_CHECK_MESSAGE( po.password == "pass" , "password is:" << po.password);
 	BOOST_CHECK_MESSAGE( po.port == 4200 , "local port is:" << po.port);
+	BOOST_CHECK_MESSAGE( po.preventGui == true , "prevent gui is:" << po.preventGui);
 	BOOST_CHECK(po.proceed);
 }
 
@@ -40,6 +41,7 @@ BOOST_AUTO_TEST_CASE( defaults ) {
 	BOOST_CHECK_MESSAGE( po.server == "192.168.0.1" , "default server is:" << po.server);
 	BOOST_CHECK_EQUAL( po.password , "admin");
 	BOOST_CHECK_EQUAL( po.port , 8080);
+	BOOST_CHECK_EQUAL( po.preventGui , false);
 	BOOST_CHECK(po.proceed);
 }
 

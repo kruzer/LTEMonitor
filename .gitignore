@@ -6,3 +6,6 @@ build/
 *.swp
 AngularResources.h
 .DS_Store
+Debug/
+Release/
+Version.h
