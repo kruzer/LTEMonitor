@@ -5,9 +5,10 @@
 namespace po = boost::program_options;
 
 ProgramOptions::ProgramOptions(int argc, const char* argv[]) :
-	desc("Options"),proceed(true) {
+	desc("Options"),proceed(true),preventGui(false) {
 
 		desc.add_options()("help,h", "Display this help message describing all options");
+		desc.add_options()("block,b", "Prevent auto starting browser at http://locahost:[port]");
 		desc.add_options()("version,v", "Display the version number");
 		desc.add_options()("server,s", po::value<std::string>()->default_value("192.168.0.1"), "IP or router's domain name");
 		desc.add_options()("user,u", po::value<std::string>()->default_value("admin"), "router's username");
@@ -28,6 +29,8 @@ ProgramOptions::ProgramOptions(int argc, const char* argv[]) :
 				std::cout << "";
 				proceed = false;
 			}
+
+			if (vm.count("block")) preventGui = true;
 
 			server = vm["server"].as<std::string>();
 			user = vm["user"].as<std::string>();

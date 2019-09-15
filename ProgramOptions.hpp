@@ -10,8 +10,9 @@ public:
 	std::string server;
 	std::string user;
 	std::string password;
-	int					port;
 	bool				proceed;
+	bool				preventGui;
+	int					port;
 	/**
 	 * Default Constructor - deleted
 	 */

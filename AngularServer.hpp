@@ -15,7 +15,8 @@ class AngularServer {
 	public:
 		AngularServer()=delete;
 		AngularServer(const AngularServer &val) = delete;
-		AngularServer(RouterClient &routerClient, const int port);
+		//AngularServer(RouterClient &routerClient, const int port);
+		AngularServer(RouterClient &routerClient, const int port,const std::function<void()>& afterStart = {});
 		/**
 		 * Destructor
 		 */

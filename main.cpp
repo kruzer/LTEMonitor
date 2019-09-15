@@ -2,7 +2,6 @@
 #include "HuaweiClient.hpp"
 #include "AngularServer.hpp"
 
-
 using namespace std;
 
 int main(int argc, const char * argv[]){
@@ -11,7 +10,6 @@ int main(int argc, const char * argv[]){
 		std::cout << "exiting ... " << std::endl;
 		return 0;
 	}
-	//HuaweiClient hc("192.168.0.1","admin","aaaaaaA1A1");
 	HuaweiClient hc(po.server,po.user,po.password);
 	thread login_thread([&hc]{
 			cout << "Background login to: " << hc.getServer() << endl;
@@ -19,6 +17,13 @@ int main(int argc, const char * argv[]){
 			});
 	login_thread.detach();
 
-	AngularServer as(hc,po.port);
+	AngularServer as(hc,po.port, [&po](){
+			std::string url="xdg-open http://localhost:";
+#ifdef _WIN32
+			url="cmd /c start http://localhost:";
+#elif __APPLE__
+			url="open http://localhost:";
+#endif
+			if(!po.preventGui) system(url.append(std::to_string(po.port)).c_str());
+			});
 }
-

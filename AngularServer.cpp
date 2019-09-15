@@ -14,7 +14,7 @@ using namespace boost::property_tree;
 
 //------------------------------------- AngularServer
 
-AngularServer::AngularServer(RouterClient &routerClient, const int port) : rc(routerClient){
+AngularServer::AngularServer(RouterClient &routerClient, const int port,const std::function<void()>& afterStart) : rc(routerClient){
 	server.config.port = port;
 
 	//out_header.emplace("Access-Control-Allow-Origin","*");
@@ -34,14 +34,10 @@ AngularServer::AngularServer(RouterClient &routerClient, const int port) : rc(ro
 			server.start();
 			});
 	std::this_thread::sleep_for(std::chrono::microseconds(100));
-#ifdef _WIN32
-	system("cmd /c start http://localhost:8080");
-#elif __APPLE__
-	system("open http://localhost:8080");
-#elif __linux__
-	system("xdg-open http://localhost:8080");
-#elif __unix__
-#endif
+
+	if(afterStart != NULL){	
+		afterStart();
+	}
 }
 
 void AngularServer::stop(){
