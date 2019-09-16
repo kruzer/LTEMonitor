@@ -14,7 +14,7 @@ strip LTEMonitor
 
 cd ..
 
-mkdir Debug
-cd Debug
-cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug
-make
+#mkdir Debug
+#cd Debug
+#cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug
+#make

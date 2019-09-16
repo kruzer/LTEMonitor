@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.2)
 project(LTEMonitor)
 
 set (lte_monitor_VERSION_MAJOR 0)
-set (lte_monitor_VERSION_MINOR 14)
+set (lte_monitor_VERSION_MINOR 15)
  
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -22,7 +22,7 @@ if(APPLE)
     set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
 		find_package(OpenSSL)
 		if(OPENSSL_FOUND)
-			include_directories( ${Boost_INCLUDE_DIRS} ${PROJECT_BINARY_DIR} ${OPENSSL_INCLUDE_DIR})
+			include_directories(${OPENSSL_INCLUDE_DIR})
 		endif()
 endif()
 

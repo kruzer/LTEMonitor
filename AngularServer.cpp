@@ -1,4 +1,5 @@
 #include "AngularServer.hpp"
+#include "Version.h"
 #include "Simple-Web-Server/server_http.hpp"
 #include "Simple-Web-Server/status_code.hpp"
 #define BOOST_SPIRIT_THREADSAFE
@@ -84,6 +85,12 @@ void AngularServer::serveConfigGet(std::shared_ptr<HttpServer::Response> res, st
 	tree.put("config.server", rc.getServer());
 	tree.put("config.user", rc.getUserName());
 	tree.put("config.password", rc.getPassword());
+	std::ostringstream av, bv;
+	av << lte_monitor_VERSION_MAJOR << "." << lte_monitor_VERSION_MINOR;
+	bv << BOOST_VERSION / 100000 << "." << BOOST_VERSION / 100 % 1000 << "." << BOOST_VERSION % 100;
+	tree.put("config.appVersion", av.str());
+	tree.put("config.boostVersion", bv.str());
+
 	std::stringstream ss;
 	write_json(ss,tree);
 	res->write(ss,out_header);
