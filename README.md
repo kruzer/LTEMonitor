@@ -1,5 +1,6 @@
 # LTEMonitor
 ## Multiplatform LTE Router status monitor
+## An example of C++ & Angular Desktop Application
 ![Screeenshot1](img/scr1.png?raw=true "Screenshot 1")
 **LTEMonitor** presents data from your Huawei router or modem.
 Technically LTEMonitor is a self contained Web Server (uses https://gitlab.com/eidheim/Simple-Web-Server as a backend) and Angular Client (uses https://github.com/kruzer/lmgui as frontend) works on:
