@@ -3,10 +3,16 @@
 ## An example of C++ & Angular Desktop Application
 ![Screeenshot1](img/scr1.png?raw=true "Screenshot 1")
 **LTEMonitor** presents data from your Huawei router or modem.
-Technically LTEMonitor is a self contained Web Server (uses https://gitlab.com/eidheim/Simple-Web-Server as a backend) and Angular Client (uses https://github.com/kruzer/lmgui as frontend) works on:
-* Linux
-* MacOS
-* Windows
+Technically LTEMonitor is a self contained Web Server (uses https://gitlab.com/eidheim/Simple-Web-Server as a backend) and Angular Client (uses https://github.com/kruzer/lmgui ).
+
+## Features
+
+- Cross-platform (Linux, OSX, Windows),
+- Single binary without any runtime dependencies,
+- Fast startup and low memory footprint (due to native code and static binaries),
+- Server/client architecture,
+- Configuration with command line parameters,
+- API Console - to test your router/modem features
 
 ## Build
 
