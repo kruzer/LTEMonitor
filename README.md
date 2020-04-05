@@ -45,6 +45,24 @@ LTEMonitor -s 192.168.8.1 -u admin -p admin
 ```
 and open your browser at http://localhost:8080 (the default local port is 8080, but it can be changed in command line)
 
+There is complete list of current command line parameters:
+```sh
+./LTEMonitor --help
+
+LTE Monitor version 0.16
+Options:
+  -h [ --help ]                      Display this help message describing all 
+                                     options
+  -b [ --block ]                     Prevent auto starting browser at 
+                                     http://locahost:[port]
+  -v [ --version ]                   Display the version number
+  -s [ --server ] arg (=192.168.0.1) IP or router's domain name
+  -u [ --user ] arg (=admin)         router's username
+  -p [ --password ] arg (=admin)     password
+  -o [ --port ] arg (=8080)          local server port number
+
+```
+
 ### JSON API
 You can comunicate with the router using LTEMonitor as an authorised proxy, all API calls ('/api/...') are encapsulated in credentials and forwarded to it.
 ```sh
