@@ -41,6 +41,12 @@ AngularServer::AngularServer(RouterClient &routerClient, const int port,const st
 	}
 }
 
+void AngularServer::setSingleInHeader(const std::string &key, const std::string &val){
+	auto it = out_header.find(key);
+	if(it != out_header.end()) it->second = val;	
+	else out_header.emplace(key, val);
+}	
+
 void AngularServer::stop(){
 	server.stop();
 }
@@ -57,10 +63,16 @@ void AngularServer::serveResources(std::shared_ptr<HttpServer::Response> res, st
 	BOOST_LOG_TRIVIAL(info) << "url [" << url << "]";
 	auto found =  ResourcesMap.find(url);
 	if(found != ResourcesMap.end()){
+		/*
 		if(endsWith(req->path, ".js")) out_header.emplace("Content-Type","application/javascript; charset=UTF-8");
 		if(endsWith(req->path, ".png")) out_header.emplace("Content-Type","image/png; charset=UTF-8");
 		if(endsWith(req->path, ".css")) out_header.emplace("Content-Type","text/css");
 		if(endsWith(url, ".html")) out_header.emplace("Content-Type","text/html");
+		*/
+		if(endsWith(req->path, ".js")) setSingleInHeader("Content-Type","application/javascript; charset=UTF-8");
+		if(endsWith(req->path, ".png")) setSingleInHeader("Content-Type","image/png; charset=UTF-8");
+		if(endsWith(req->path, ".css")) setSingleInHeader("Content-Type","text/css");
+		if(endsWith(url, ".html")) setSingleInHeader("Content-Type","text/html");
 		BOOST_LOG_TRIVIAL(info) << "found:" << req->path;
 		std::string mystr(found->second.second, found->second.second + found->second.first);
 		res->write(SimpleWeb::StatusCode::success_ok,mystr,out_header);
@@ -77,6 +89,7 @@ void AngularServer::serveStatusGet(std::shared_ptr<HttpServer::Response> res, st
 	tree.put("status.loggedin", rc.isLoggedIn());
 	std::stringstream ss;
 	write_json(ss,tree);
+	setSingleInHeader("Content-Type","application/json; charset=UTF-8");
 	res->write(ss,out_header);
 }
 void AngularServer::serveConfigGet(std::shared_ptr<HttpServer::Response> res, std::shared_ptr<HttpServer::Request> ){
@@ -93,6 +106,7 @@ void AngularServer::serveConfigGet(std::shared_ptr<HttpServer::Response> res, st
 
 	std::stringstream ss;
 	write_json(ss,tree);
+	setSingleInHeader("Content-Type","application/json; charset=UTF-8");
 	res->write(ss,out_header);
 }
 
@@ -114,6 +128,7 @@ void AngularServer::serveConfigPut(std::shared_ptr<HttpServer::Response> res, st
 	tree.put("config.password", rc.getPassword());
 	std::stringstream ss;
 	write_json(ss,tree);
+	setSingleInHeader("Content-Type","application/json; charset=UTF-8");
 	res->write(ss,out_header);
 }
 
@@ -130,6 +145,7 @@ void AngularServer::serveApiGet(std::shared_ptr<HttpServer::Response> res, std::
 	//std::string mypath=req->path_match[1].str();
 	BOOST_LOG_TRIVIAL(info) << "sending api " << req->path ;
 	std::string  r = rc.Query(req->method, req->path, req->content.string());
+	setSingleInHeader("Content-Type","application/json; charset=UTF-8");
 	res->write(r,out_header);
 }
 

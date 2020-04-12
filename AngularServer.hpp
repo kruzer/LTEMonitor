@@ -12,6 +12,7 @@ class AngularServer {
 		RouterClient &rc;
 		HttpServer	server;
 		SimpleWeb::CaseInsensitiveMultimap out_header;
+		void setSingleInHeader(const std::string &key, const std::string &val);
 	public:
 		AngularServer()=delete;
 		AngularServer(const AngularServer &val) = delete;
