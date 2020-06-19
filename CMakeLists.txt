@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.2)
 project(LTEMonitor)
 
 set (lte_monitor_VERSION_MAJOR 0)
-set (lte_monitor_VERSION_MINOR 16)
+set (lte_monitor_VERSION_MINOR 17)
  
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
