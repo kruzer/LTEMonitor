@@ -43,7 +43,7 @@ The LTEMonitor accepts command line parameters, however it can be configured via
 ```sh
 LTEMonitor -s 192.168.8.1 -u admin -p admin
 ```
-and open your browser at http://localhost:8080 (the default local port is 8080, but it can be changed in command line)
+and opens your browser at http://localhost:8080 (the default local port is 8080, but it can be changed in command line)
 
 There is complete list of current command line parameters:
 ```sh
