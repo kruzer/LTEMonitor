@@ -64,4 +64,5 @@ function(create_resources dir output)
 	file(APPEND ${output} ${resmap})
 	file(APPEND ${output} "};\n")
 endfunction()
-create_resources("${PROJECT_SOURCE_DIR}/lmgui/dist/lmgui" AngularResources.h) 
+# Angular 22's application builder emits into dist/<project>/browser
+create_resources("${PROJECT_SOURCE_DIR}/lmgui/dist/lmgui/browser" AngularResources.h)
